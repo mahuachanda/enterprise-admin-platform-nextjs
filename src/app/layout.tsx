@@ -10,14 +10,13 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+
   return (
-    <html>
+    <html lang="en">
       <body>
         <Header/>
         <div className="flex">
           <Sidebar/>
-        
-       
         <main className="flex-1">
             {children}
         </main>

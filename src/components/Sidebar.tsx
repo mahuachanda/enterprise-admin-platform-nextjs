@@ -1,14 +1,25 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 export default function Sidebar() {
+
+    const pathName = usePathname();//get the current path name from the browser.
+
+    const navigation = [
+        {label:"Dashboard", href:'/dashboard'},
+        {label:"Users",href:'/users'},
+        {label:"Settings",href:'/settings'},
+        {label:"Products",href:'/products'},
+        {label:"Reports",href:'/reports'}
+    ]
     return (
         <aside className="w-64 bg-zinc-50 font-sans dark:bg-black">
             <nav>
                 <ul>
-                    <li><Link href="/dashboard">Dashboard</Link></li>
-                    <li><Link href="/users">Users</Link></li> {/* Next.js Link component for client-side navigation */}
-                    <li><Link href="/settings">Settings</Link></li>
-                    <li><Link href="/products">Products</Link></li>
-                    <li><Link href="/reports">Reports</Link></li>
+                {navigation.map((item)=>(<li key={item.href}>
+                    <Link  href={item.href} className = {pathName===item.href ? "active" : ""}>{item.label}</Link>
+                </li>))}
+                
                 </ul>
             </nav>
         </aside>
